@@ -6,102 +6,502 @@
     <title>🔮 4 月預約表 ｜ 仁昇設計塔羅森林</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;600&display=swap');
+
         * { box-sizing: border-box; margin: 0; padding: 0; }
+
         :root {
-            --deep: #1a0a2e; --mid: #2d1055; --purple: #6b3fa0;
-            --gold: #c9a84c; --gold-light: #f0d080; --rose: #c97b8a;
-            --cream: #f5efe6; --text: #e8dff5; --muted: #b09ec0;
-            --card: rgba(255,255,255,0.05); --border: rgba(201,168,76,0.3);
+            --bg-deep:    #040d14;
+            --bg-mid:     #071a2a;
+            --teal:       #0ea5a0;
+            --teal-light: #5eead4;
+            --cyan:       #22d3ee;
+            --silver:     #cbd5e1;
+            --silver-dim: #94a3b8;
+            --silver-glow:#e2e8f0;
+            --glass-bg:   rgba(14, 165, 160, 0.07);
+            --glass-bg2:  rgba(255, 255, 255, 0.04);
+            --glass-border: rgba(94, 234, 212, 0.25);
+            --glass-border2: rgba(203, 213, 225, 0.15);
+            --text:       #e2e8f0;
+            --text-muted: #94a3b8;
         }
+
         body {
             font-family: 'Noto Serif TC', 'Microsoft JhengHei', serif;
-            background-color: var(--deep);
-            background-image: radial-gradient(ellipse at 20% 20%, rgba(107,63,160,0.25) 0%, transparent 60%), radial-gradient(ellipse at 80% 80%, rgba(201,123,138,0.15) 0%, transparent 60%);
-            color: var(--text); min-height: 100vh; line-height: 1.8;
+            background-color: var(--bg-deep);
+            background-image:
+                radial-gradient(ellipse at 15% 10%, rgba(14,165,160,0.18) 0%, transparent 55%),
+                radial-gradient(ellipse at 85% 80%, rgba(34,211,238,0.12) 0%, transparent 55%),
+                radial-gradient(ellipse at 50% 50%, rgba(6,182,212,0.06) 0%, transparent 70%);
+            color: var(--text);
+            min-height: 100vh;
+            line-height: 1.8;
         }
-        .top-banner { background: linear-gradient(135deg, var(--mid), var(--deep)); border-bottom: 1px solid var(--border); padding: 10px 0; text-align: center; font-size: 0.85rem; color: var(--gold); letter-spacing: 0.15em; }
-        .hero { padding: 60px 20px 40px; text-align: center; }
-        .hero-month { font-size: 0.85rem; letter-spacing: 0.4em; color: var(--gold); margin-bottom: 12px; }
-        .hero-title { font-size: clamp(1.8rem, 5vw, 3rem); font-weight: 600; color: var(--cream); letter-spacing: 0.08em; margin-bottom: 12px; }
-        .hero-title span { color: var(--gold-light); }
-        .hero-subtitle { font-size: 1rem; color: var(--rose); letter-spacing: 0.2em; margin-bottom: 30px; }
-        .divider { display: flex; align-items: center; justify-content: center; gap: 12px; max-width: 300px; margin: 0 auto 50px; }
-        .divider::before { content: ''; flex: 1; height: 1px; background: linear-gradient(to right, transparent, var(--gold)); }
-        .divider::after  { content: ''; flex: 1; height: 1px; background: linear-gradient(to left,  transparent, var(--gold)); }
-        .divider span { color: var(--gold); }
-        .container { max-width: 860px; margin: 0 auto; padding: 0 20px; }
-        .section-gap { margin-bottom: 60px; }
-        .section-title { text-align: center; font-size: 0.8rem; letter-spacing: 0.4em; color: var(--gold); margin-bottom: 24px; }
-        .studio-photo img { width: 100%; border-radius: 16px; border: 1px solid var(--border); display: block; box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 40px rgba(201,168,76,0.08); }
-        .brand-block { display: flex; align-items: center; gap: 40px; padding: 36px 30px; background: var(--card); border: 1px solid var(--border); border-radius: 20px; flex-wrap: wrap; }
-        .brand-logo img { width: 130px; height: 130px; object-fit: contain; border-radius: 50%; border: 2px solid var(--border); }
+
+        /* ─── NOISE OVERLAY ─── */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* ─── TOP BANNER ─── */
+        .top-banner {
+            position: relative;
+            z-index: 1;
+            background: linear-gradient(90deg, rgba(14,165,160,0.15), rgba(34,211,238,0.1), rgba(14,165,160,0.15));
+            border-bottom: 1px solid var(--glass-border);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 10px 20px;
+            text-align: center;
+            font-size: 0.84rem;
+            color: var(--teal-light);
+            letter-spacing: 0.18em;
+        }
+
+        /* ─── HERO ─── */
+        .hero {
+            position: relative;
+            z-index: 1;
+            padding: 72px 20px 48px;
+            text-align: center;
+        }
+
+        .hero-month {
+            font-size: 0.82rem;
+            letter-spacing: 0.5em;
+            color: var(--teal);
+            margin-bottom: 14px;
+            text-transform: uppercase;
+        }
+
+        .hero-title {
+            font-size: clamp(1.9rem, 5.5vw, 3.2rem);
+            font-weight: 600;
+            color: var(--silver-glow);
+            letter-spacing: 0.1em;
+            margin-bottom: 14px;
+            text-shadow: 0 0 40px rgba(34,211,238,0.3), 0 2px 8px rgba(0,0,0,0.6);
+        }
+
+        .hero-title .accent { color: var(--teal-light); }
+
+        .hero-subtitle {
+            font-size: 0.95rem;
+            color: var(--teal);
+            letter-spacing: 0.25em;
+            margin-bottom: 36px;
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            max-width: 320px;
+            margin: 0 auto 56px;
+        }
+        .divider::before {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--teal));
+        }
+        .divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(to left, transparent, var(--teal));
+        }
+        .divider span {
+            color: var(--teal-light);
+            font-size: 1.1rem;
+            filter: drop-shadow(0 0 6px var(--teal));
+        }
+
+        /* ─── LAYOUT ─── */
+        .container { max-width: 860px; margin: 0 auto; padding: 0 20px; position: relative; z-index: 1; }
+        .section-gap { margin-bottom: 64px; }
+
+        .section-title {
+            text-align: center;
+            font-size: 0.78rem;
+            letter-spacing: 0.45em;
+            color: var(--teal);
+            margin-bottom: 28px;
+            text-transform: uppercase;
+        }
+
+        /* ─── GLASS CARD BASE ─── */
+        .glass {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 18px;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow:
+                0 8px 32px rgba(0,0,0,0.4),
+                inset 0 1px 0 rgba(94,234,212,0.1),
+                0 0 0 1px rgba(255,255,255,0.02);
+        }
+
+        /* ─── STUDIO PHOTO ─── */
+        .studio-photo img {
+            width: 100%;
+            border-radius: 16px;
+            border: 1px solid var(--glass-border);
+            display: block;
+            box-shadow:
+                0 24px 64px rgba(0,0,0,0.6),
+                0 0 0 1px rgba(94,234,212,0.08),
+                0 0 60px rgba(14,165,160,0.12);
+        }
+
+        /* ─── BRAND BLOCK ─── */
+        .brand-block {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            padding: 38px 32px;
+            flex-wrap: wrap;
+        }
+
+        .brand-logo img {
+            width: 130px;
+            height: 130px;
+            object-fit: contain;
+            border-radius: 50%;
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 0 30px rgba(14,165,160,0.2);
+            background: rgba(14,165,160,0.05);
+        }
+
         .brand-info { flex: 1; min-width: 200px; }
-        .brand-num { font-size: clamp(2.8rem, 7vw, 4.5rem); font-weight: 300; color: var(--gold-light); letter-spacing: 0.2em; line-height: 1; margin-bottom: 6px; }
-        .brand-name { font-size: 0.9rem; color: var(--muted); letter-spacing: 0.35em; margin-bottom: 18px; }
+
+        .brand-num {
+            font-size: clamp(2.8rem, 7vw, 4.6rem);
+            font-weight: 300;
+            color: var(--silver-glow);
+            letter-spacing: 0.22em;
+            line-height: 1;
+            margin-bottom: 6px;
+            text-shadow: 0 0 30px rgba(34,211,238,0.25);
+        }
+
+        .brand-name {
+            font-size: 0.88rem;
+            color: var(--teal);
+            letter-spacing: 0.38em;
+            margin-bottom: 20px;
+        }
+
         .brand-services { list-style: none; }
-        .brand-services li { font-size: 0.88rem; color: var(--text); padding: 2px 0; letter-spacing: 0.05em; }
-        .brand-services li::before { content: '✦  '; color: var(--gold); font-size: 0.65rem; }
-        .cred-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 10px; }
-        .cred-tag { background: var(--card); border: 1px solid rgba(201,168,76,0.15); border-radius: 8px; padding: 10px 14px; font-size: 0.85rem; color: var(--muted); text-align: center; }
-        .notice { background: linear-gradient(135deg, rgba(201,168,76,0.07), rgba(201,123,138,0.07)); border: 1px solid var(--border); border-left: 4px solid var(--gold); border-radius: 12px; padding: 22px 26px; font-size: 0.92rem; color: var(--muted); line-height: 2; }
-        .service-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 18px; }
-        .service-card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 26px 18px; text-align: center; transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s; }
-        .service-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.4), 0 0 20px rgba(201,168,76,0.1); border-color: rgba(201,168,76,0.6); }
-        .s-emoji { font-size: 2rem; margin-bottom: 12px; display: block; }
-        .s-name  { font-size: 0.98rem; font-weight: 500; color: var(--cream); margin-bottom: 8px; }
-        .s-desc  { font-size: 0.8rem; color: var(--muted); margin-bottom: 14px; line-height: 1.7; }
-        .s-price { font-size: 1.1rem; font-weight: 600; color: var(--gold-light); letter-spacing: 0.08em; }
-        .form-card { background: rgba(45,16,85,0.4); border: 1px solid var(--border); border-radius: 20px; padding: 40px 36px; backdrop-filter: blur(12px); }
-        .form-card-title { text-align: center; font-size: 1.25rem; color: var(--cream); letter-spacing: 0.15em; margin-bottom: 6px; }
-        .form-card-sub { text-align: center; font-size: 0.83rem; color: var(--rose); letter-spacing: 0.08em; margin-bottom: 32px; }
-        .form-group { margin-bottom: 22px; }
-        .form-label { display: block; font-size: 0.88rem; color: var(--gold); letter-spacing: 0.1em; margin-bottom: 10px; }
-        .req { color: var(--rose); margin-left: 3px; }
-        .lnote { font-size: 0.75rem; color: var(--muted); margin-left: 8px; }
-        .form-input, .form-textarea { width: 100%; background: rgba(255,255,255,0.05); border: 1px solid rgba(201,168,76,0.3); border-radius: 10px; padding: 11px 15px; font-size: 0.9rem; color: var(--text); font-family: inherit; transition: border-color 0.2s, box-shadow 0.2s; outline: none; }
-        .form-input:focus, .form-textarea:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(201,168,76,0.12); }
-        .form-input::placeholder, .form-textarea::placeholder { color: rgba(176,158,192,0.45); }
-        .form-textarea { resize: vertical; min-height: 95px; }
-        .radio-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 8px; }
-        .radio-opt { display: flex; align-items: center; gap: 7px; padding: 9px 12px; background: rgba(255,255,255,0.03); border: 1px solid rgba(201,168,76,0.2); border-radius: 8px; cursor: pointer; transition: background 0.2s, border-color 0.2s; font-size: 0.85rem; color: var(--muted); }
-        .radio-opt:hover { background: rgba(201,168,76,0.08); border-color: rgba(201,168,76,0.5); color: var(--text); }
-        .radio-opt input[type="radio"] { accent-color: var(--gold); width: 14px; height: 14px; flex-shrink: 0; }
-        .form-hint { font-size: 0.77rem; color: var(--muted); margin-top: 7px; line-height: 1.6; }
-        .form-divider { height: 1px; background: linear-gradient(to right, transparent, var(--border), transparent); margin: 26px 0; }
-        .submit-btn { width: 100%; padding: 15px; background: linear-gradient(135deg, var(--gold), #a07830); color: var(--deep); font-family: inherit; font-size: 0.98rem; font-weight: 600; letter-spacing: 0.3em; border: none; border-radius: 12px; cursor: pointer; transition: opacity 0.2s, transform 0.15s, box-shadow 0.2s; margin-top: 6px; }
-        .submit-btn:hover { opacity: 0.9; transform: translateY(-1px); box-shadow: 0 8px 25px rgba(201,168,76,0.3); }
-        .success-msg { display: none; text-align: center; padding: 26px 18px; background: rgba(201,168,76,0.1); border: 1px solid var(--border); border-radius: 14px; color: var(--gold-light); font-size: 1.02rem; letter-spacing: 0.05em; margin-top: 20px; line-height: 2; }
-        .loc-card { background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 34px 30px; }
-        .loc-title { font-size: 0.95rem; color: var(--gold); letter-spacing: 0.3em; text-align: center; margin-bottom: 20px; }
-        .loc-sub { font-size: 0.83rem; color: var(--purple); letter-spacing: 0.2em; margin: 18px 0 12px; text-align: center; }
-        .loc-item { display: flex; align-items: flex-start; gap: 10px; padding: 9px 0; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 0.88rem; color: var(--muted); line-height: 1.7; }
+        .brand-services li {
+            font-size: 0.88rem;
+            color: var(--silver-dim);
+            padding: 3px 0;
+            letter-spacing: 0.05em;
+        }
+        .brand-services li::before {
+            content: '◈  ';
+            color: var(--teal-light);
+            font-size: 0.65rem;
+        }
+
+        /* ─── CREDENTIALS ─── */
+        .cred-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(195px, 1fr));
+            gap: 10px;
+        }
+
+        .cred-tag {
+            background: var(--glass-bg2);
+            border: 1px solid var(--glass-border2);
+            border-radius: 10px;
+            padding: 11px 16px;
+            font-size: 0.84rem;
+            color: var(--silver-dim);
+            text-align: center;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            transition: border-color 0.2s, color 0.2s;
+        }
+        .cred-tag:hover {
+            border-color: var(--glass-border);
+            color: var(--silver);
+        }
+
+        /* ─── NOTICE ─── */
+        .notice {
+            background: linear-gradient(135deg, rgba(14,165,160,0.08), rgba(34,211,238,0.05));
+            border: 1px solid var(--glass-border);
+            border-left: 3px solid var(--teal);
+            border-radius: 14px;
+            padding: 24px 28px;
+            font-size: 0.92rem;
+            color: var(--text-muted);
+            line-height: 2;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        /* ─── SERVICE CARDS ─── */
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+            gap: 18px;
+        }
+
+        .service-card {
+            background: var(--glass-bg2);
+            border: 1px solid var(--glass-border2);
+            border-radius: 16px;
+            padding: 28px 18px;
+            text-align: center;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            box-shadow: 0 4px 24px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.04);
+            transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+        }
+        .service-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--glass-border);
+            box-shadow: 0 16px 40px rgba(0,0,0,0.45), 0 0 24px rgba(14,165,160,0.12), inset 0 1px 0 rgba(94,234,212,0.08);
+        }
+
+        .s-emoji { font-size: 2.1rem; margin-bottom: 13px; display: block; filter: drop-shadow(0 0 8px rgba(34,211,238,0.4)); }
+        .s-name  { font-size: 0.97rem; font-weight: 500; color: var(--silver-glow); margin-bottom: 9px; }
+        .s-desc  { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 15px; line-height: 1.7; }
+        .s-price { font-size: 1.1rem; font-weight: 600; color: var(--teal-light); letter-spacing: 0.06em; text-shadow: 0 0 16px rgba(94,234,212,0.4); }
+
+        /* ─── FORM ─── */
+        .form-card {
+            background: linear-gradient(135deg, rgba(14,165,160,0.08), rgba(6,182,212,0.05));
+            border: 1px solid var(--glass-border);
+            border-radius: 22px;
+            padding: 44px 38px;
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            box-shadow:
+                0 12px 48px rgba(0,0,0,0.5),
+                inset 0 1px 0 rgba(94,234,212,0.12),
+                inset 0 -1px 0 rgba(94,234,212,0.04);
+        }
+
+        .form-card-title {
+            text-align: center;
+            font-size: 1.28rem;
+            color: var(--silver-glow);
+            letter-spacing: 0.18em;
+            margin-bottom: 7px;
+            text-shadow: 0 0 24px rgba(34,211,238,0.2);
+        }
+
+        .form-card-sub {
+            text-align: center;
+            font-size: 0.82rem;
+            color: var(--teal);
+            letter-spacing: 0.1em;
+            margin-bottom: 34px;
+        }
+
+        .form-group { margin-bottom: 24px; }
+
+        .form-label {
+            display: block;
+            font-size: 0.87rem;
+            color: var(--teal-light);
+            letter-spacing: 0.12em;
+            margin-bottom: 10px;
+        }
+
+        .req   { color: var(--cyan); margin-left: 3px; }
+        .lnote { font-size: 0.74rem; color: var(--text-muted); margin-left: 8px; }
+
+        .form-input, .form-textarea {
+            width: 100%;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(94,234,212,0.2);
+            border-radius: 10px;
+            padding: 12px 16px;
+            font-size: 0.9rem;
+            color: var(--text);
+            font-family: inherit;
+            transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+            outline: none;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+        .form-input:focus, .form-textarea:focus {
+            border-color: var(--teal);
+            background: rgba(14,165,160,0.07);
+            box-shadow: 0 0 0 3px rgba(14,165,160,0.12), 0 0 16px rgba(14,165,160,0.08);
+        }
+        .form-input::placeholder, .form-textarea::placeholder { color: rgba(148,163,184,0.4); }
+        .form-textarea { resize: vertical; min-height: 96px; }
+
+        .radio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(118px, 1fr));
+            gap: 8px;
+        }
+
+        .radio-opt {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 9px 12px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(94,234,212,0.15);
+            border-radius: 9px;
+            cursor: pointer;
+            transition: background 0.2s, border-color 0.2s, color 0.2s;
+            font-size: 0.84rem;
+            color: var(--text-muted);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+        .radio-opt:hover {
+            background: rgba(14,165,160,0.1);
+            border-color: var(--teal);
+            color: var(--silver);
+        }
+        .radio-opt input[type="radio"] {
+            accent-color: var(--teal);
+            width: 14px; height: 14px;
+            flex-shrink: 0;
+        }
+
+        .form-hint { font-size: 0.76rem; color: var(--text-muted); margin-top: 8px; line-height: 1.65; }
+        .form-divider { height: 1px; background: linear-gradient(to right, transparent, var(--glass-border), transparent); margin: 28px 0; }
+
+        .submit-btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, var(--teal), #0891b2);
+            color: #040d14;
+            font-family: inherit;
+            font-size: 0.98rem;
+            font-weight: 700;
+            letter-spacing: 0.32em;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: opacity 0.2s, transform 0.15s, box-shadow 0.2s;
+            margin-top: 8px;
+            box-shadow: 0 4px 24px rgba(14,165,160,0.3);
+        }
+        .submit-btn:hover {
+            opacity: 0.92;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 32px rgba(14,165,160,0.45);
+        }
+        .submit-btn:active { transform: translateY(0); }
+
+        .success-msg {
+            display: none;
+            text-align: center;
+            padding: 28px 20px;
+            background: rgba(14,165,160,0.1);
+            border: 1px solid var(--glass-border);
+            border-radius: 14px;
+            color: var(--teal-light);
+            font-size: 1.02rem;
+            letter-spacing: 0.05em;
+            margin-top: 20px;
+            line-height: 2;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        /* ─── LOCATION ─── */
+        .loc-card { padding: 36px 30px; }
+
+        .loc-title {
+            font-size: 0.95rem;
+            color: var(--teal-light);
+            letter-spacing: 0.32em;
+            text-align: center;
+            margin-bottom: 22px;
+            text-shadow: 0 0 16px rgba(94,234,212,0.3);
+        }
+
+        .loc-sub {
+            font-size: 0.82rem;
+            color: var(--teal);
+            letter-spacing: 0.22em;
+            margin: 20px 0 13px;
+            text-align: center;
+        }
+
+        .loc-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 11px;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(94,234,212,0.06);
+            font-size: 0.87rem;
+            color: var(--text-muted);
+            line-height: 1.75;
+        }
         .loc-item:last-child { border-bottom: none; }
         .loc-icon { flex-shrink: 0; margin-top: 2px; }
-        .footer { text-align: center; padding: 30px 20px 50px; border-top: 1px solid rgba(201,168,76,0.1); }
-        .footer-icon { font-size: 1.6rem; margin-bottom: 8px; }
-        .footer-text { font-size: 0.8rem; color: var(--muted); letter-spacing: 0.2em; }
+
+        /* ─── FOOTER ─── */
+        .footer {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 32px 20px 52px;
+            border-top: 1px solid rgba(94,234,212,0.1);
+        }
+        .footer-icon {
+            font-size: 1.7rem;
+            margin-bottom: 9px;
+            filter: drop-shadow(0 0 10px rgba(34,211,238,0.5));
+        }
+        .footer-text { font-size: 0.79rem; color: var(--text-muted); letter-spacing: 0.22em; }
+
+        /* ─── RESPONSIVE ─── */
         @media (max-width: 600px) {
             .brand-block { flex-direction: column; text-align: center; }
-            .form-card { padding: 26px 18px; }
+            .form-card { padding: 28px 18px; }
             .radio-grid { grid-template-columns: repeat(2, 1fr); }
             .service-grid { grid-template-columns: repeat(2, 1fr); }
         }
     </style>
 </head>
 <body>
-<div class="top-banner">🔔 填好表單後請私訊我一個貼圖，確認時間後才算預約成功 🔔</div>
-<section class="hero">
-    <div class="hero-month">April 2026</div>
-    <h1 class="hero-title">🔮 4 月預約表 <span>♾️</span> 🧙</h1>
-    <p class="hero-subtitle">仁昇設計塔羅森林</p>
-    <div class="divider"><span>✦</span></div>
-</section>
-<div class="container section-gap studio-photo">
-    <img src="019d7cf9-tarot.png" alt="仁昇設計塔羅森林 工作室" />
+
+<!-- TOP BANNER -->
+<div class="top-banner">
+    🔔 填好表單後請私訊我一個貼圖，確認時間後才算預約成功 🔔
 </div>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-month">April · 2026</div>
+    <h1 class="hero-title">🔮 4 月預約表 <span class="accent">♾️</span> 🧙</h1>
+    <p class="hero-subtitle">仁昇設計塔羅森林</p>
+    <div class="divider"><span>◈</span></div>
+</section>
+
+<!-- STUDIO PHOTO -->
+<div class="container section-gap studio-photo">
+    <img src="019d7cf9-tarot.png" alt="仁昇設計塔羅森林 服務項目" />
+</div>
+
+<!-- BRAND BLOCK -->
 <div class="container section-gap">
-    <div class="brand-block">
-        <div class="brand-logo"><img src="019d7d00-__.png" alt="仁昇設計塔羅森林 品牌標誌" /></div>
+    <div class="brand-block glass">
+        <div class="brand-logo">
+            <img src="019d7d00-__.png" alt="仁昇設計塔羅森林 品牌標誌" />
+        </div>
         <div class="brand-info">
             <div class="brand-num">1493</div>
             <div class="brand-name">－ 仁 昇 設 計 塔 羅 森 林 －</div>
@@ -113,6 +513,8 @@
         </div>
     </div>
 </div>
+
+<!-- CREDENTIALS -->
 <div class="container section-gap">
     <p class="section-title">✦ 師資認證 ✦</p>
     <div class="cred-grid">
@@ -126,29 +528,63 @@
         <div class="cred-tag">美國 IET® 九大天使能量療癒</div>
     </div>
 </div>
+
+<!-- NOTICE -->
 <div class="container section-gap">
-    <div class="notice">占卜諮詢採預約制，為確保每位來訪者的體驗品質，請您依約準時前來。<br />若延遲抵達，將無法延長原定占卜時間，避免影響後續預約顧客的權利。</div>
+    <div class="notice">
+        占卜諮詢採預約制，為確保每位來訪者的體驗品質，請您依約準時前來。<br />
+        若延遲抵達，將無法延長原定占卜時間，避免影響後續預約顧客的權利。
+    </div>
 </div>
+
+<!-- SERVICE CARDS -->
 <div class="container section-gap">
     <p class="section-title">✦ 服務項目與收費 ✦</p>
     <div class="service-grid">
-        <div class="service-card"><span class="s-emoji">🔮</span><div class="s-name">潛意識塔羅占卜</div><div class="s-desc">塔羅牌搭配各式牌卡進行占卜（約 40–60 分鐘）</div><div class="s-price">NT$ 1,000</div></div>
-        <div class="service-card"><span class="s-emoji">♾️</span><div class="s-name">祈願魔法＋占卜組合</div><div class="s-desc">潛意識塔羅占卜＋遠距白魔法（除厄／良緣／福祐 三擇一）</div><div class="s-price">NT$ 1,419</div></div>
-        <div class="service-card"><span class="s-emoji">💕</span><div class="s-name">能量療癒＋占卜組合</div><div class="s-desc">潛意識塔羅占卜＋擴大療癒能量 現場療癒（約 90 分鐘）</div><div class="s-price">NT$ 1,619</div></div>
-        <div class="service-card"><span class="s-emoji">🕊️</span><div class="s-name">潛意識深層催眠療癒</div><div class="s-desc">與潛意識對話，釋放矛盾枷鎖，喚醒內在力量（約 180 分鐘）</div><div class="s-price">NT$ 4,919</div></div>
+        <div class="service-card">
+            <span class="s-emoji">🔮</span>
+            <div class="s-name">潛意識塔羅占卜</div>
+            <div class="s-desc">塔羅牌搭配各式牌卡進行占卜（約 40–60 分鐘）</div>
+            <div class="s-price">NT$ 1,000</div>
+        </div>
+        <div class="service-card">
+            <span class="s-emoji">♾️</span>
+            <div class="s-name">祈願魔法＋占卜組合</div>
+            <div class="s-desc">潛意識塔羅占卜＋遠距白魔法（除厄／良緣／福祐 三擇一）</div>
+            <div class="s-price">NT$ 1,419</div>
+        </div>
+        <div class="service-card">
+            <span class="s-emoji">💕</span>
+            <div class="s-name">能量療癒＋占卜組合</div>
+            <div class="s-desc">潛意識塔羅占卜＋擴大療癒能量 現場療癒（約 90 分鐘）</div>
+            <div class="s-price">NT$ 1,619</div>
+        </div>
+        <div class="service-card">
+            <span class="s-emoji">🕊️</span>
+            <div class="s-name">潛意識深層催眠療癒</div>
+            <div class="s-desc">與潛意識對話，釋放矛盾枷鎖，喚醒內在力量（約 180 分鐘）</div>
+            <div class="s-price">NT$ 4,919</div>
+        </div>
     </div>
 </div>
+
+<!-- FORM -->
 <div class="container section-gap">
     <div class="form-card">
         <h2 class="form-card-title">✦ 預約表單 ✦</h2>
         <p class="form-card-sub">🔔 填寫完畢後，請私訊粉專一則貼圖或訊息，確認時間後才算預約成功</p>
+
         <form id="appointmentForm">
             <div class="form-group">
                 <label class="form-label" for="appt-date">預約日期</label>
                 <input class="form-input" type="date" id="appt-date" name="appt-date" />
             </div>
+
             <div class="form-group">
-                <label class="form-label">預約星期幾<span class="req">*</span><span class="lnote">（週六需提前兩日預約）</span></label>
+                <label class="form-label">
+                    預約星期幾<span class="req">*</span>
+                    <span class="lnote">（週六需提前兩日預約）</span>
+                </label>
                 <div class="radio-grid">
                     <label class="radio-opt"><input type="radio" name="weekday" value="一" /> 星期一</label>
                     <label class="radio-opt"><input type="radio" name="weekday" value="二" /> 星期二</label>
@@ -158,6 +594,7 @@
                     <label class="radio-opt"><input type="radio" name="weekday" value="六" /> 星期六</label>
                 </div>
             </div>
+
             <div class="form-group">
                 <label class="form-label">預約時間<span class="req">*</span></label>
                 <div class="radio-grid">
@@ -172,28 +609,40 @@
                     <label class="radio-opt"><input type="radio" name="time-slot" value="其他" /> 其他時間聊聊</label>
                 </div>
             </div>
+
             <div class="form-divider"></div>
+
             <div class="form-group">
                 <label class="form-label" for="preferred-date">希望可以的日期<span class="req">*</span></label>
                 <input class="form-input" type="text" id="preferred-date" name="preferred-date" placeholder="ex: 4/13" />
             </div>
+
             <div class="form-group">
                 <label class="form-label" for="social-id">臉書暱稱 或 IG id<span class="req">*</span></label>
                 <input class="form-input" type="text" id="social-id" name="social-id" placeholder="請輸入您的臉書暱稱或 IG 帳號" />
                 <p class="form-hint">讓我們知道是誰的預約，填寫完後請私訊粉專一則貼圖或訊息開啟對話，後續以粉專做時間確認。</p>
             </div>
+
             <div class="form-group">
                 <label class="form-label" for="topic">想要占卜的事情概況<span class="req">*</span></label>
                 <textarea class="form-textarea" id="topic" name="topic" placeholder="大致上描述即可"></textarea>
                 <p class="form-hint">🔔 送出表單後請私訊一則訊息或是貼圖！！！<br />我們彼此確定好時間後才算是預約成功喔</p>
             </div>
+
             <button type="submit" class="submit-btn">送 出 預 約 表 單</button>
         </form>
-        <div class="success-msg" id="successMsg">🎉 表單已送出！<br />請記得私訊粉專一則貼圖或訊息，<br />我們確認好時間後才算預約成功喔 🔮</div>
+
+        <div class="success-msg" id="successMsg">
+            🎉 表單已送出！<br />
+            請記得私訊粉專一則貼圖或訊息，<br />
+            我們確認好時間後才算預約成功喔 🔮
+        </div>
     </div>
 </div>
+
+<!-- LOCATION -->
 <div class="container section-gap">
-    <div class="loc-card">
+    <div class="loc-card glass">
         <h3 class="loc-title">『 地理位置 』</h3>
         <div class="loc-item"><span class="loc-icon">📍</span><span>中壢 國際財星大樓 9樓 日日好日 裡面</span></div>
         <div class="loc-item"><span class="loc-icon">📍</span><span>一樓是 聯邦銀行</span></div>
@@ -205,11 +654,14 @@
         <div class="loc-item"><span class="loc-icon">🚇</span><span>機捷：機場捷運『環北站』下車 → 步行 15 分鐘約 1 公里</span></div>
     </div>
 </div>
+
+<!-- FOOTER -->
 <footer class="footer">
     <div class="footer-icon">🔮</div>
     <p class="footer-text">由 1493 仁昇設計塔羅森林 製作</p>
-    <p class="footer-text" style="margin-top:6px;opacity:0.5;">💕 🔔 表單後請私訊粉專一則訊息或是貼圖 🔔 💕</p>
+    <p class="footer-text" style="margin-top:6px;opacity:0.45;">💕 🔔 表單後請私訊粉專一則訊息或是貼圖 🔔 💕</p>
 </footer>
+
 <script>
     document.getElementById('appointmentForm').addEventListener('submit', function(e) {
         e.preventDefault();
