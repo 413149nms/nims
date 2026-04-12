@@ -366,6 +366,20 @@
         }
         .submit-btn:active { transform: translateY(0); }
 
+        .form-select {
+            appearance: none;
+            -webkit-appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2314b8a6' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 16px center;
+            cursor: pointer;
+        }
+        .form-select option {
+            background: #0d2b3e;
+            color: #e2e8f0;
+            padding: 8px;
+        }
+
         .success-msg {
             display: none;
             text-align: center;
@@ -534,9 +548,16 @@
         <p class="form-card-sub">🔔 填寫完畢後，請私訊粉專一則貼圖或訊息，確認時間後才算預約成功</p>
 
         <form id="appointmentForm">
+            
             <div class="form-group">
-                <label class="form-label" for="appt-date">預約日期</label>
-                <input class="form-input" type="date" id="appt-date" name="appt-date" />
+                <label class="form-label" for="service-type">選擇服務項目<span class="req">*</span></label>
+                <select class="form-input form-select" id="service-type" name="service-type" required>
+                    <option value="" disabled selected>── 請選擇您要預約的服務 ──</option>
+                    <option value="潛意識塔羅占卜 NT1000">🔮 潛意識塔羅占卜 ／ NT$1,000（約 40–60 分鐘）</option>
+                    <option value="祈願魔法+占卜組合 NT1419">♾️ 祈願魔法＋占卜組合 ／ NT$1,419（占卜＋遠距白魔法）</option>
+                    <option value="能量療癒+占卜組合 NT1619">💕 能量療癒＋占卜組合 ／ NT$1,619（占卜＋擴大療癒，約 90 分鐘）</option>
+                    <option value="潛意識深層催眠療癒 NT4919">🕊️ 潛意識深層催眠療癒 ／ NT$4,919（約 180 分鐘）</option>
+                </select>
             </div>
 
             <div class="form-group">
@@ -628,6 +649,9 @@
         var msg = document.getElementById('successMsg');
         msg.style.display = 'block';
         window.scrollTo({ top: msg.offsetTop - 60, behavior: 'smooth' });
+        setTimeout(function() {
+            window.location.href = 'https://www.instagram.com/1493nco';
+        }, 2500);
     });
 </script>
 </body>
